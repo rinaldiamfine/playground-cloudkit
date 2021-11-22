@@ -1,0 +1,54 @@
+<html>
+<head>
+	<title>Anslate CloudKitJS</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+	<script src="https://cdn.apple-cloudkit.com/ck/2/cloudkit.js" async></script>
+</head>
+<body>
+
+	<div class="container">
+
+		<div class="page-header">
+			<h1>Anslate <small> CloudKitJS</small></h1>
+			<span data-bind="text: displayUserName"></span>
+			<div id="apple-sign-in-button"></div>
+			<div id="apple-sign-out-button"></div>
+		</div>
+
+		<div data-bind="visible: newMedicalVisible">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Add New Medical Term</h3>
+				</div>
+				<div class="panel-body">
+					<form data-bind="submit: saveNewMedicalTerm">
+						<div class="form-group">
+							<label>Name</label>
+							<input class="form-control" placeholder="Name" data-bind="value: newMedicalName" />
+						</div>
+						<div class="form-group">
+							<label>Detail</label>
+							<input class="form-control" placeholder="Detail" data-bind="value: newMedicalDetail" />
+						</div>
+						<button type="submit" data-bind="enable: saveButtonEnabled" class="btn btn-primary pull-right">Save Medical Term</button>
+					</form>
+				</div>
+			</div>
+			<hr>
+		</div>
+
+		<div data-bind="foreach: medicalTerms">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<h4><span data-bind="text: fields.name.value"></span></h4>
+					<p><span data-bind="text: fields.detail.value"></span></p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>
